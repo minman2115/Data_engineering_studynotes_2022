@@ -2249,7 +2249,9 @@ catapp_url = "http://ec2-54-219-148-40.us-west-1.compute.amazonaws.com"
 
 <img width="750" alt="5" src="https://user-images.githubusercontent.com/41605276/150138374-f88d0d5a-03a3-4557-9fc3-85f3e0cf3fab.png">
 
+그런 다음에 아래 가이드에 따라 진행해준다.
 
+```text
 Terraform Cloud Setup
 During this challenge and the next one, you'll use the remote state feature of Terraform Cloud to store your state file in the cloud. In order to do this you'll need a Terraform Cloud account. Click on the URL below and sign up for a free account if you don't have one already:
 
@@ -2268,8 +2270,9 @@ Run terraform version on the "Shell" tab and then set the Terraform Version to m
 Also, change the Execution Mode to Local.
 
 Be sure to save your settings by clicking the "Save settings" button at the bottom of the page! This will allow us to run Terraform commands from our workstation with local variables, which we'll do in the next challenge.
+```
 
-아래와 같이 진행
+위에 가이드에 따라 아래 그림과 같이 진행한다.
 
 <img width="1275" alt="6" src="https://user-images.githubusercontent.com/41605276/150139799-0a653bc0-1c99-4ff1-b609-d8a7636ea3fe.png">
 
