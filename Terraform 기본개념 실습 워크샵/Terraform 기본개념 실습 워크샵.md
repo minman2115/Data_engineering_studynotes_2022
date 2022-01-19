@@ -2283,7 +2283,9 @@ Be sure to save your settings by clicking the "Save settings" button at the bott
 
 위에 이미지에서 로컬 버튼 누르기 전에 반드시 !!!! 아래 부분에서 테라폼 버전을 1.0.7로 변경해주고 로컬로 변경해줘야 함
 
+그런 다음에 아래 가이드에 따라 진행해준다.
 
+```text
 Configure Remote State
 During this challenge we'll configure Terraform Cloud as a remote state backend, and then migrate our existing state file to Terraform Cloud.
 
@@ -2308,6 +2310,7 @@ Type "yes" when it prompts you to migrate your state into Terraform Cloud.
 Your state is now safely stored in Terraform Cloud. You can verify this on the "States" tab of your workspace in the TFC UI.
 
 Run a terraform apply -auto-approve and watch your state file evolve with each change. You can browse through previous state files with the Terraform Cloud UI.
+```
 
 ```console
 root@workstation:~/hashicat-aws# cat remote_backend.tf
