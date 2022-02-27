@@ -167,9 +167,9 @@ name: projects/qwiklabs-gcp-00-c1186d5d3f7c/topics/iotlab
 
 <img width="1425" alt="3" src="https://user-images.githubusercontent.com/41605276/155844477-1254fa6e-f66d-4a17-bb9f-69dc0e5d0c1e.png">
 
-(6) In the Permissions dialogue, click ADD PRINCIPAL and copy the below principal as New principals: cloud-iot@system.gserviceaccount.com
+(6) In the Permissions dialogue, click ADD PRINCIPAL and copy the below principal as New principals: `cloud-iot@system.gserviceaccount.com`
 
-(7) From the Select a role menu, give the new member the Pub/Sub > Pub/Sub Publisher role.
+(7) From the `Select a role` menu, give the new member the Pub/Sub > Pub/Sub Publisher role.
 
 (8) Click Save.
 
@@ -199,6 +199,12 @@ Table 'qwiklabs-gcp-00-c1186d5d3f7c:iotlabdataset.sensordata' successfully creat
 ```
 
 #### STEP 6) Create a cloud storage bucket
+
+For Name, use your Project ID then add `-bucket`
+
+ex) `qwiklabs-gcp-00-c1186d5d3f7c-bucket`
+
+For Location type, click Multi-region if it is not already selected.
 
 ```console
 student_03_23376c19c633@cloudshell:~ (qwiklabs-gcp-00-c1186d5d3f7c)$ gsutil mb -l US gs://qwiklabs-gcp-00-c1186d5d3f7c-bucket
@@ -289,6 +295,24 @@ student-03-23376c19c633@iot-device-simulator:~$ sudo pip3 install virtualenv
 student-03-23376c19c633@iot-device-simulator:~$ virtualenv -p python3 venv
 
 student-03-23376c19c633@iot-device-simulator:~$ source venv/bin/activate
+```
+
+```text
+
+** 아래에 gcloud init 명령어 실행 시 주의사항
+
+If you get the error message "Command not found," you might have forgotten to exit your previous SSH session and start a new one.
+
+If you are asked whether to authenticate with an @developer.gserviceaccount.com account or to log in with a new account, choose log in with a new account.
+
+If you are asked "Are you sure you want to authenticate with your personal account? Do you want to continue (Y/n)?" enter Y.
+
+Click on the URL shown to open a new browser window that displays a verification code.
+
+Copy the verification code and paste it in response to the "Enter verification code:" prompt, then press Enter.
+```
+
+```console
 
 (venv) student-03-23376c19c633@iot-device-simulator:~$ gcloud init
 Welcome! This command will take you through the configuration of gcloud.
@@ -374,6 +398,16 @@ To register devices, you must create a registry for the devices. The registry is
 Created registry [iotlab-registry].
 ```
 
+바로위에 명령어가 길기 때문에 정렬해보면 아래와 같다.
+
+```text
+gcloud iot registries create iotlab-registry \
+   --project=$PROJECT_ID \
+   --region=$MY_REGION \
+   --event-notification-config=topic=projects/$PROJECT_ID/topics/iotlab
+```
+
+
 #### STEP 10) Create a Cryptographic Keypair
 
 `iot-device-simulator` VM 터미널에서 아래와 같이 실행해준다.
@@ -385,14 +419,22 @@ In your SSH session on the `iot-device-simulator` VM instance, enter these comma
 ```console
 (venv) student-03-23376c19c633@iot-device-simulator:~$ cd $HOME/training-data-analyst/quests/iotlab/
 
-(venv) student-03-23376c19c633@iot-device-simulator:~/training-data-analyst/quests/iotlab$ openssl req -x509 -newkey rsa:2048 -keyout rsa_private.pem -nodes -out rsa_cert.pem -subj "/C
-N=unused"
+(venv) student-03-23376c19c633@iot-device-simulator:~/training-data-analyst/quests/iotlab$ openssl req -x509 -newkey rsa:2048 -keyout rsa_private.pem -nodes -out rsa_cert.pem -subj "/CN=unused"
 Generating a RSA private key
 ...+++++
 ..............................................+++++
 writing new private key to 'rsa_private.pem'
 -----
 ```
+
+바로위에 명령어가 길기 때문에 정렬해보면 아래와 같다.
+
+```text
+cd $HOME/training-data-analyst/quests/iotlab/
+openssl req -x509 -newkey rsa:2048 -keyout rsa_private.pem \
+    -nodes -out rsa_cert.pem -subj "/CN=unused"
+```
+
 
 This openssl command creates an RSA cryptographic keypair and writes it to a file called `rsa_private.pem`.
 
@@ -423,11 +465,31 @@ In your SSH session on the `iot-device-simulator` VM instance, enter this comman
 Created device [temp-sensor-buenos-aires].
 ```
 
+바로위에 명령어가 길기 때문에 정렬해보면 아래와 같다.
+
+```text
+gcloud iot devices create temp-sensor-buenos-aires \
+  --project=$PROJECT_ID \
+  --region=$MY_REGION \
+  --registry=iotlab-registry \
+  --public-key path=rsa_cert.pem,type=rs256
+```
+
 Enter this command to create a device called `temp-sensor-istanbul`:
 
 ```console
 (venv) student-03-23376c19c633@iot-device-simulator:~/training-data-analyst/quests/iotlab$ gcloud iot devices create temp-sensor-istanbul --project=$PROJECT_ID --region=$MY_REGION --registry=iotlab-registry --public-key path=rsa_cert.pem,type=rs256
 Created device [temp-sensor-istanbul].
+```
+
+바로위에 명령어가 길기 때문에 정렬해보면 아래와 같다.
+
+```text
+gcloud iot devices create temp-sensor-istanbul \
+  --project=$PROJECT_ID \
+  --region=$MY_REGION \
+  --registry=iotlab-registry \
+  --public-key path=rsa_cert.pem,type=rs256
 ```
 
 #### STEP 12) Run simulated devices
@@ -438,7 +500,16 @@ In your SSH session on the iot-device-simulator VM instance, enter these command
 (venv) student-03-23376c19c633@iot-device-simulator:~/training-data-analyst/quests/iotlab$ cd $HOME/training-data-analyst/quests/iotlab/
 
 (venv) student-03-23376c19c633@iot-device-simulator:~/training-data-analyst/quests/iotlab$ curl -o roots.pem -s -m 10 --retry 0 "https://pki.goog/roots.pem"
+```
 
+바로위에 명령어가 길기 때문에 정렬해보면 아래와 같다.
+
+```text
+cd $HOME/training-data-analyst/quests/iotlab/
+curl -o roots.pem -s -m 10 --retry 0 "https://pki.goog/roots.pem"
+```
+
+```console
 (venv) student-03-23376c19c633@iot-device-simulator:~/training-data-analyst/quests/iotlab$ python cloudiot_mqtt_example_json.py --project_id=$PROJECT_ID --cloud_region=$MY_REGION --registry_id=iotlab-registry --device_id=temp-sensor-buenos-aires --private_key_file=rsa_private.pem --message_type=event --algorithm=RS256 > buenos-aires-log.txt 2>&1 &
 [1] 14310
 
@@ -479,7 +550,31 @@ on_publish
 Finished.
 [1]+  Done                    python cloudiot_mqtt_example_json.py --project_id=$PROJECT_ID --cloud_region=$MY_REGION --registry_id=iotlab-registry --device_id=temp-sensor-buenos-aires
  --private_key_file=rsa_private.pem --message_type=event --algorithm=RS256 > buenos-aires-log.txt 2>&1
+```
 
+바로위에 명령어가 길기 때문에 정렬해보면 아래와 같다.
+
+```text
+python cloudiot_mqtt_example_json.py \
+   --project_id=$PROJECT_ID \
+   --cloud_region=$MY_REGION \
+   --registry_id=iotlab-registry \
+   --device_id=temp-sensor-buenos-aires \
+   --private_key_file=rsa_private.pem \
+   --message_type=event \
+   --algorithm=RS256 > buenos-aires-log.txt 2>&1 &
+
+python cloudiot_mqtt_example_json.py \
+   --project_id=$PROJECT_ID \
+   --cloud_region=$MY_REGION \
+   --registry_id=iotlab-registry \
+   --device_id=temp-sensor-istanbul \
+   --private_key_file=rsa_private.pem \
+   --message_type=event \
+   --algorithm=RS256
+```
+
+```console
 (venv) student-03-23376c19c633@iot-device-simulator:~/training-data-analyst/quests/iotlab$ cat cloudiot_mqtt_example_json.py
 ```
 
