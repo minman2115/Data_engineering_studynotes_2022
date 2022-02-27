@@ -281,10 +281,8 @@ To connect to the `iot-device-simulator` VM instance:
 ```console
 Linux iot-device-simulator 4.19.0-18-cloud-amd64 #1 SMP Debian 4.19.208-1 (2021-09-29) x86_64
 The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
+the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright.
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.
 Creating directory '/home/student-03-23376c19c633'.
 student-03-23376c19c633@iot-device-simulator:~$ sudo pip3 install virtualenv
 
