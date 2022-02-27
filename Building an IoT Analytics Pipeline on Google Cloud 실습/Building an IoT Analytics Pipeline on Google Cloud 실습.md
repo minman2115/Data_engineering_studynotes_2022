@@ -37,7 +37,7 @@ compute engine VM compute --> IoT Core --> pub/sub --> Dataflow --> Bigquery
 ** 전반적인 자원생성 등 컨트롤은 GCP cloud shell 이라는 터미널에서 진행함
 ```
 
-[실습요약]
+### [실습요약]
 
 STEP 1) cloud shell에서의 기본적인 권한설정
 
