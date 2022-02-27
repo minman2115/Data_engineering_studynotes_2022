@@ -2,7 +2,7 @@
 
 Data_Engineering_TIL(20220227)
 
-[실습소개]
+### [실습소개]
 
 - Overview
 
@@ -26,12 +26,11 @@ Cloud IoT Core has two main components:
 
 (4) Analyze the IoT data using BigQuery.
 
-[실습 아키텍처]
-
-```text
+### [실습 아키텍처]
 
 데이터 흐름은 아래와 같음
 
+```text
 compute engine VM compute --> IoT Core --> pub/sub --> Dataflow --> Bigquery
 (iot-device-simulator) 
 
@@ -66,7 +65,7 @@ STEP 12) Run simulated devices
 
 STEP 13) Analyze the Sensor Data Using BigQuery
 
-[실습내용]
+### [실습내용]
 
 #### STEP 1) cloud shell에서의 기본적인 권한설정
 
@@ -258,7 +257,6 @@ type: JOB_TYPE_STREAMING
 ** 참고사항
 
 ```text
-
 위에 명령어는 원래는 위에 안내문에서 가이드 했듯이 --worker-machine-type n1-standard-1 옵션을 주고 생성을 시도하였는데 ERROR: (gcloud.dataflow.jobs.run) NOT_FOUND: (c7b7b3578273e897): The workflow could not be created. 에러가 계속 발생하여서 워커 타입옵션을 빼고 실행한거임
 
 gcloud dataflow jobs run iotlabflow --gcs-location gs://dataflow-templates/latest/PubSub_to_BigQuery --region us-central1 --staging-location gs://qwiklabs-gcp-00-c1186d5d3f7c-bucket/tmp/ --worker-machine-type n1-standard-1 --max-workers 2 --parameters inputTopic=projects/qwiklabs-gcp-00-c1186d5d3f7c/topics/iotlab,outputTableSpec=qwiklabs-gcp-00-c1186d5d3f7c:iotlabdataset.sensordata
@@ -298,8 +296,7 @@ student-03-23376c19c633@iot-device-simulator:~$ source venv/bin/activate
 ```
 
 ```text
-
-** 아래에 gcloud init 명령어 실행 시 주의사항
+** 아래에 gcloud init 명령어 실행 시 유의사항
 
 If you get the error message "Command not found," you might have forgotten to exit your previous SSH session and start a new one.
 
@@ -313,7 +310,6 @@ Copy the verification code and paste it in response to the "Enter verification c
 ```
 
 ```console
-
 (venv) student-03-23376c19c633@iot-device-simulator:~$ gcloud init
 Welcome! This command will take you through the configuration of gcloud.
 
