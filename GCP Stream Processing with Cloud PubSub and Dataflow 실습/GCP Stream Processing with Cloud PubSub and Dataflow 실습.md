@@ -109,19 +109,19 @@ WARNING: We are using the App Engine app location (us-central1) as the default l
 
 # cloud shell 디폴트 python 버전이 3.9 버전대인데 이거를 그대로 사용하면 apache-beam 실행시 파이썬 버전 지원이 안된다고 에러가 발생한다. 그래서 파이썬 3.7이나 3.8을 설치해야 한다.
 # Install requirements
-student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$  student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$ sudo apt-get install -y build-essential checkinstall libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev zlib1g-dev openssl libffi-dev python3-dev python3-setuptools wget 
+student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$ sudo apt-get install -y build-essential checkinstall libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev zlib1g-dev openssl libffi-dev python3-dev python3-setuptools wget 
 
 # Prepare to build
-student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$  mkdir /tmp/Python37
+student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$ mkdir /tmp/Python37
 
-student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$  cd /tmp/Python37
+student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$ cd /tmp/Python37
 
 # Pull down Python 3.7, build, and install
-student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$  wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz
+student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$ wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz
 
-student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$  tar xvf Python-3.7.0.tar.xz
+student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$ tar xvf Python-3.7.0.tar.xz
 
-student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$  cd /tmp/Python37/Python-3.7.0
+student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$ cd /tmp/Python37/Python-3.7.0
 
 student_03_8b4d04139f65@cloudshell:/tmp/Python37/Python-3.7.0 (qwiklabs-gcp-01-7a0357624d5f)$ ./configure
 
