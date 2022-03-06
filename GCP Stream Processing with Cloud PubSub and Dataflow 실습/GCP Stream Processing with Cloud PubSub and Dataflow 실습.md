@@ -21,9 +21,11 @@ Write the messages to Cloud Storage
 ### [실습 아키텍처]
 
 ```text
-cloudshell --> pub/sub --> dataflow --> gcs
+cloudshell 
 
-** cloudshell : 이번 실습에서는 자원생성하는 터미널이자 실시간 데이터를 생산하는 머신 역할을 하게됨
+scheduler job on app engine --> pub/sub --> dataflow --> gcs
+
+** cloudshell : 자원생성 등 명령어를 컨트롤 하는 역할
 ```
 
 ### [실습 요약]
@@ -123,7 +125,7 @@ student_03_8b4d04139f65@cloudshell:~ (qwiklabs-gcp-01-7a0357624d5f)$  cd /tmp/Py
 
 student_03_8b4d04139f65@cloudshell:/tmp/Python37/Python-3.7.0 (qwiklabs-gcp-01-7a0357624d5f)$ ./configure
 
-student_03_8b4d04139f65@cloudshell/tmp/Python37/Python-3.7.0 (qwiklabs-gcp-01-7a0357624d5f)$  sudo make altinstall
+student_03_8b4d04139f65@cloudshell/tmp/Python37/Python-3.7.0 (qwiklabs-gcp-01-7a0357624d5f)$ sudo make altinstall
 
 student_03_8b4d04139f65@cloudshell:/tmp/Python37/Python-3.7.0 (qwiklabs-gcp-01-7a0357624d5f)$ virtualenv env -p python3.7.0
 created virtual environment CPython3.7.0.final.0-64 in 1354ms
