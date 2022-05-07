@@ -196,7 +196,7 @@ step 1-9) 우선 Lambda 에서 사용할 보안 그룹을 생성합니다. [Secu
 
 <img width="1368" alt="4-1" src="https://user-images.githubusercontent.com/41605276/163665106-32a66eda-23eb-4e4e-8b9f-2920ca96d05d.png">
 
-<img width="1356" alt="4-2" src="https://user-images.githubusercontent.com/41605276/163665113-d3ec1030-46a9-4af1-9bdc-87b792d1a5c3.png">
+<img width="1337" alt="422" src="https://user-images.githubusercontent.com/41605276/167246555-75d5937b-f8cd-4141-9e4c-1c179a3c8f0b.png">
 
 step 1-10) 이어서 RDS 에서 사용할 보안 그룹을 생성합니다. 앞서와 동일하게 보안 그룹 생성 메뉴로 이동한 뒤 [Security group name] 에는 `rds-sg` 를 입력하고 [Description] 을 적은 뒤 [VPC] 는 동일하게 `serverless-app` 을 선택합니다.
 

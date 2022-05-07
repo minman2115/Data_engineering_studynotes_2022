@@ -103,7 +103,7 @@ step 2-2) 좌측의 [Proxies] 메뉴를 선택한 뒤 [Create proxy] 버튼을 �
 
 step 2-3) [Proxy identifier] 에는 `serverless-app-rds-proxy` 를 입력하고 [Engine compatibility] 는 MySQL 을 선택합니다.
 
-step 2-4) 하단의 Target group configuration 에서 [Database] 는 Module 2. 에서 생성한 `serverless-app-rds` 를 선택합니다.
+step 2-4) 하단의 Target group configuration 에서 [Database] 는 앞선 실습에서 생성한 `serverless-app-rds` 를 선택합니다.
 
 step 2-5) Connectivity 설정에서 [Secrets Manager secret(s)] 에는 앞서 생성한 `serverless-app-rds-secret` 을 선택합니다.
 
@@ -169,7 +169,7 @@ def lambda_handler(event, context):
     json_secret = json.loads(secret)
 
     db = pymysql.connect(
-        host = 'YOUR RDS PROXY ENDPOINT',
+        host = '{YOUR RDS PROXY ENDPOINT}',
         user = json_secret['username'], 
         password = json_secret['password']
         )
@@ -187,9 +187,9 @@ def lambda_handler(event, context):
     }
 ```
 
-앞선 실습보다 코드가 길어졌지만 실제로 AWS Secrets Manager 를 활용하는 것을 제외한다면 pymysql.connect() 의 host 주소만 RDS Proxy 로 변경된 것을 알 수 있습니다. 이처럼 RDS Proxy 는 애플리케이션의 변경을 최소화하는 방식으로 충분히 활용이 가능합니다.
+앞선 실습보다 코드가 길어졌지만 실제로 AWS Secrets Manager 를 활용하는 것을 제외한다면 `pymysql.connect()`의 host 주소만 RDS Proxy 로 변경된 것을 알 수 있습니다. 이처럼 RDS Proxy 는 애플리케이션의 변경을 최소화하는 방식으로 충분히 활용이 가능합니다.
 
-step 3-5) 코드 상 33 라인의 pymysql.connect() 부분의 host 부분에 대한 변경이 필요합니다. 앞서 생성한 RDS Proxy 의 Proxy endpoints 중 [Tartget role] 이 Read/write 로 되어 있는 엔드포인트를 복사하여 Lambda 함수에 업데이트 합니다.
+step 3-5) 코드상 33 line의 `pymysql.connect()` 부분의 host 부분에 대한 변경이 필요합니다. 앞서 생성한 RDS Proxy 의 Proxy endpoints 중 [Tartget role] 이 Read/write 로 되어 있는 엔드포인트를 복사하여 Lambda 함수에 업데이트 합니다.
 
 <img width="965" alt="13" src="https://user-images.githubusercontent.com/41605276/167236901-b1f89eb6-bbf8-4931-8699-bd63a74d4727.png">
 
@@ -199,10 +199,15 @@ step 3-6) 변경을 완료 했다면 [Deploy] 버튼을 클릭해 배포를 완�
 
 #### Step 4. 테스트
 
-앞서 구성한 AWS Secrets Manager 와 Amazon RDS Proxy 가 제대로 동작하는지 테스트를 해보겠습니다. Lambda 콘솔에서 바로 Test 를 수행할 수 있지만 Module 2 에서 생성한 Amazon API Gateway 의 Invoke URL 을 활용해 테스트 하겠습니다.
+앞서 구성한 AWS Secrets Manager 와 Amazon RDS Proxy 가 제대로 동작하는지 테스트를 해보겠습니다. Lambda 콘솔에서 바로 Test 를 수행할 수 있지만 앞선 실습에서 생성한 Amazon API Gateway 의 Invoke URL 을 활용해 테스트 하겠습니다.
 
 step 4-1) AWS 콘솔에서 Amazon API Gateway 서비스로 이동합니다.
 
-step 4-2) 앞서 생성한 serverless-app-api 를 선택하고 좌측의 [Stages] 메뉴로 이동한 뒤 dev 스테이지를 선택합니다.
+step 4-2) 앞서 생성한 `serverless-app-api` 를 선택하고 좌측의 [Stages] 메뉴로 이동한 뒤 dev 스테이지를 선택합니다.
 
-step 4-3) 화면에 표시된 [Invoke URL] 를 복사하여 브라우저에서 연결하거나 터미널에서 호출해봅니다. Module 2 에서 수행하던 것과 유사한 결과값이 나오는 것을 확인할 수 있습니다.
+step 4-3) 화면에 표시된 [Invoke URL] 를 복사하여 브라우저에서 연결하거나 터미널에서 호출해봅니다. 앞선 실습에서 수행하던 것과 유사한 결과값이 나오는 것을 확인할 수 있습니다.
+
+```console
+$ curl https://xxxxxxxx.execute-api.ap-northeast-2.amazonaws.com/dev
+{"statusCode": 200, "body": "\"2022-05-07T08:36:10\""}%
+```
