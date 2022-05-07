@@ -230,7 +230,7 @@ step 2-7) [Engine options] 에는 [MySQL] 을 선택합니다. [Version] 은 `My
 
 step 2-8) 하단 Settings 에서 [DB instance identifier] 에는 `serverless-app-rds` 를 입력합니다. Credentials Settings 에서 [Master username] 은 기본 값인 admin 으로 두고 [Master password] 와 [Confirm password] 에는 기억할 수 있는 임의의 패스워드 를 입력합니다.
 
-step 2-9) [DB instance class] 는 `db.t3.micro(또는 작은사양으로 아무거나)` 로 변경하고 아래 Storage 옵션에서 [Storage type] 은 General Purpose (SSD) 로 변경합니다. [Allocated storage] 는 `20 GiB` 를 입력하고 아래 [Enable storage autoscaling] 옵션은 비활성화 해줍니다.
+step 2-9) [DB instance class] 는 `db.m5.large` 로 변경하고 아래 Storage 옵션에서 [Storage type] 은 General Purpose (SSD) 로 변경합니다. [Allocated storage] 는 `20 GiB` 를 입력하고 아래 [Enable storage autoscaling] 옵션은 비활성화 해줍니다.
 
 <img width="1318" alt="8" src="https://user-images.githubusercontent.com/41605276/163661329-176781b7-8124-4030-9ede-ef078c81972e.png">
 
