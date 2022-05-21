@@ -69,7 +69,9 @@ step 1-10) VPC Endpoints 설정에는 보안 그룹이 필요합니다. 오늘 �
 step 1-11) 좌측의 [Security Group] 메뉴로 이동한 뒤 [Create security group] 버튼을 선택합니다.
 [Security group name] 에는 `secret-sg` 를 입력하고 [Description] 을 적은 뒤 [VPC] 는 앞서 생성한 `serverless-app` 을 선택합니다.
 
-step 1-12)하단의 Inbound rules 에서 [Add rule] 버튼을 클릭하여 인바운드 규칙을 추가합니다. [Type] 은 HTTPS 를 선택하고 [Source] 에는 앞서 생성한 `lambda-sg` 를 선택합니다. 아래 [Create security group] 을 선택하여 완료합니다.
+step 1-12)하단의 Inbound rules 에서 [Add rule] 버튼을 클릭하여 인바운드 규칙을 추가합니다. [Type] 은 아래와 같이 HTTPS로 하는게 아니라 ALL TCP로 하고 [Source] 에는 앞서 생성한 `lambda-sg` 를 선택합니다. 아래 [Create security group] 을 선택하여 완료합니다.
+
+** 아래 그림과 같이 HTTPS가 아니라 ALL TCP로 꼭 바꾸자 !!!
 
 <img width="936" alt="4" src="https://user-images.githubusercontent.com/41605276/167236140-2ff396b1-b852-466a-9b4f-a33623f73c17.png">
 
