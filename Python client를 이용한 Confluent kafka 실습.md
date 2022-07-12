@@ -51,7 +51,7 @@ confluent 웹콘솔 --> Environments 메뉴에서 원하는 환경접속 --> Sch
 
 confluent 웹콘솔 --> Environments 메뉴에서 원하는 환경접속 --> Schema Registry 메뉴 --> View & manage schemas 메뉴 --> Add schema를 누르고 Avro 양식으로 스키마 등록
 
-### STEP 4) GCS Connector 생성
+### STEP 4) GCS sink Connector 생성
 
 confluent 웹콘솔 --> Environments 메뉴애서 원하는 환경접속 --> Clusters 메뉴 --> 원하는 클러스터 접속 --> 좌측 메뉴에 Data integration --> Connectors에서 Add Connector를 누르고 GCS connector를 생성해준다.
 
