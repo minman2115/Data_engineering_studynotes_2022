@@ -58,7 +58,7 @@ confluent 웹콘솔 --> Environments 메뉴애서 원하는 환경접속 --> Clu
 confluent 클러스터 연결설정, GCP credential json 파일을 업로드 및 destination bucket 설정을 하여 생성을 해준다.
 
 
-### STEP 4) 간이 avro producer 작성
+### STEP 5) 간이 avro producer 작성
 
 ```console
 $ vim avro_producer.py
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     avroProducer.flush()
 ```
 
-### STEP 5) 메세지 프로듀싱 실시
+### STEP 6) 메세지 프로듀싱 실시
 
 ```console
 $ chmod +x avro_producer.py
@@ -136,7 +136,7 @@ Message delivered to minsupark_test [0]
 Message delivered to minsupark_test [0]
 ```
 
-### STEP 6) GCS sink connector를 통해서 메세지가 avro 파일로 약속된 GCS 버킷에 저장되는지 확인
+### STEP 7) GCS sink connector를 통해서 메세지가 avro 파일로 약속된 GCS 버킷에 저장되는지 확인
 
 ```console
 $ gsutil ls gs://minsu_park_kafka_test/topics/minsupark_test/year=2022/month=07/day=12/hour=00/
